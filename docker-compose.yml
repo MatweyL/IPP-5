@@ -3,6 +3,17 @@ version: '3'
 
 services:
   mongo:
-    image: mongo:4.2.8
+    container_name: mongo
+    image: mongo:4.4.7-focal
     ports:
-      - 27017:27017
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  server:
+    container_name: server
+    build: ./server
+    ports:
+      - "5000:5000"
+    links:
+      - mongo
