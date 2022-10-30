@@ -28,7 +28,7 @@ def get_contacts():
 def create_contact():
     contact_dict = request.get_json()
     contact = Contact(**contact_dict)
-    return contact, 200
+    return crud.create(contact), 200
 
 
 @app.delete("/v1/contact")
